@@ -1,0 +1,341 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    --background: 270 20% 98%;
+    --foreground: 222.2 84% 4.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --card-hover: 280 50% 96%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+
+    --primary: 270 50% 55%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --accent: 190 90% 45%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 270 50% 55%;
+
+    --radius: 0.75rem;
+
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(200, 50%, 50%) 0%, hsl(270, 50%, 55%) 50%, hsl(290, 40%, 50%) 100%);
+    --gradient-glow: 0 0 30px hsla(220, 20%, 30%, 0.2), 0 0 60px hsla(260, 30%, 40%, 0.1);
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --card-hover: 280 40% 25%;
+
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 270 50% 55%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 190 90% 45%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 270 50% 55%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+@layer components {
+  /* Deep Purple Form Background */
+  .form-gradient-bg {
+    background: linear-gradient(135deg, hsl(280 60% 15%) 0%, hsl(260 50% 20%) 50%, hsl(290 45% 18%) 100%);
+  }
+
+  /* Cosmic Background - Elegant Light with Subtle Purple Tint */
+  .cosmic-bg {
+    background: linear-gradient(
+      135deg, 
+      hsl(240 20% 97%) 0%,
+      hsl(260 25% 95%) 50%,
+      hsl(250 20% 96%) 100%
+    );
+  }
+
+  /* Glass Card Styles - Elegant with Neutral Shadows */
+  .glass {
+    @apply bg-card/90 backdrop-blur-md rounded-xl;
+    border: 1px solid hsl(var(--border) / 0.5);
+    box-shadow: 0 4px 24px hsl(220 20% 10% / 0.15);
+  }
+
+  .glass-hover {
+    @apply transition-all duration-300 ease-out;
+  }
+
+  .glass-hover:hover {
+    border-color: hsl(var(--primary) / 0.4);
+    box-shadow: 0 8px 32px hsl(220 20% 10% / 0.2);
+    transform: translateY(-2px);
+  }
+
+  /* Gradient Text */
+  .gradient-text {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Glow Shadow Effect */
+  .glow-shadow:hover {
+    box-shadow: var(--gradient-glow);
+  }
+  /* Glass Input - Clean & Minimal */
+  .glass-input {
+    @apply w-full px-3 py-2 text-sm rounded-md bg-background border border-border text-foreground placeholder:text-muted-foreground transition-colors duration-200;
+  }
+
+  .glass-input:focus {
+    @apply outline-none border-primary/60;
+  }
+
+  /* Elegant Button - Refined Purple Gradient */
+  .gradient-button {
+    background: linear-gradient(135deg, hsl(270 50% 55%) 0%, hsl(260 45% 45%) 100%);
+    @apply text-primary-foreground font-medium rounded-full transition-all duration-300;
+    box-shadow: 0 2px 8px hsl(220 20% 10% / 0.2);
+  }
+
+  .gradient-button:hover {
+    background: linear-gradient(135deg, hsl(270 50% 50%) 0%, hsl(260 45% 40%) 100%);
+    box-shadow: 0 4px 16px hsl(220 20% 10% / 0.3);
+  }
+
+  /* Form Section Title - Elegant */
+  .form-section-title {
+    @apply text-base font-semibold tracking-wide pb-2 mb-4 relative;
+    background: linear-gradient(135deg, hsl(270 50% 40%) 0%, hsl(280 60% 50%) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .form-section-title::after {
+    content: '';
+    @apply absolute bottom-0 left-0 h-[1px] w-12;
+    background: linear-gradient(90deg, hsl(270 60% 50%) 0%, transparent 100%);
+  }
+
+  /* Step Pills - Base */
+  .step-pill {
+    @apply flex items-center gap-2 px-3 py-1.5 rounded-full transition-all duration-300 ease-out;
+  }
+
+  .step-pill-number {
+    @apply w-5 h-5 rounded-full flex items-center justify-center text-xs font-medium;
+  }
+
+  .step-pill-title {
+    @apply text-xs font-medium whitespace-nowrap;
+  }
+
+  /* Step Pill - Active */
+  .step-pill-active {
+    background: linear-gradient(135deg, hsl(270 55% 45%) 0%, hsl(280 50% 35%) 100%);
+    box-shadow: 0 2px 8px hsl(270 50% 40% / 0.25);
+  }
+
+  .step-pill-active .step-pill-number {
+    @apply bg-white/20 text-white;
+  }
+
+  .step-pill-active .step-pill-title {
+    @apply text-white;
+  }
+
+  /* Step Pill - Completed */
+  .step-pill-completed {
+    @apply bg-[hsl(270_40%_92%)] dark:bg-[hsl(270_30%_25%)];
+  }
+
+  .step-pill-completed .step-pill-number {
+    @apply bg-[hsl(270_50%_45%)] text-white;
+  }
+
+  .step-pill-completed .step-pill-title {
+    @apply text-[hsl(270_40%_40%)] dark:text-[hsl(270_30%_70%)];
+  }
+
+  /* Step Pill - Inactive */
+  .step-pill-inactive {
+    @apply bg-muted/50;
+  }
+
+  .step-pill-inactive .step-pill-number {
+    @apply bg-muted-foreground/20 text-muted-foreground;
+  }
+
+  .step-pill-inactive .step-pill-title {
+    @apply text-muted-foreground;
+  }
+
+  /* Notice/Warning Box - Compact */
+  .notice-box {
+    @apply flex items-start gap-1.5 px-2.5 py-1.5 rounded-md text-xs leading-relaxed;
+  }
+
+  .notice-box-warning {
+    @apply bg-orange-500/5 border border-orange-500/20;
+  }
+
+  .notice-box-warning p {
+    @apply text-orange-600 dark:text-orange-400;
+  }
+
+  .notice-box-amber {
+    @apply bg-amber-500/5 border border-amber-500/20;
+  }
+
+  .notice-box-amber p {
+    @apply text-amber-600 dark:text-amber-400;
+  }
+
+  /* Form Example Image - Compact & Elegant */
+  .form-example-image {
+    @apply max-w-[200px] mx-auto rounded-md overflow-hidden border border-border/50;
+    box-shadow: 0 2px 8px hsl(var(--primary) / 0.08);
+  }
+
+  .form-example-image img {
+    @apply w-full h-auto;
+  }
+
+  /* Confirmation Card Styles */
+  .confirmation-card {
+    @apply rounded-lg overflow-hidden border border-border/30;
+    background: linear-gradient(135deg, hsl(var(--muted) / 0.3) 0%, hsl(var(--muted) / 0.1) 100%);
+  }
+
+  .confirmation-card-header {
+    @apply flex items-center gap-2 px-3 py-2 text-xs font-medium text-foreground/80;
+    background: linear-gradient(90deg, hsl(var(--primary) / 0.08) 0%, transparent 100%);
+    border-bottom: 1px solid hsl(var(--border) / 0.2);
+  }
+
+  .confirmation-card-number {
+    @apply w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-semibold;
+    background: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(270 60% 50%) 100%);
+    color: white;
+  }
+
+  .confirmation-card-content {
+    @apply p-3 space-y-1.5;
+  }
+
+  .confirmation-item {
+    @apply flex justify-between items-start gap-4 text-xs;
+  }
+
+  .confirmation-label {
+    @apply text-gray-500 shrink-0;
+  }
+
+  .confirmation-value {
+    @apply text-foreground text-right break-all;
+  }
+
+  .confirmation-total {
+    @apply p-4 rounded-lg;
+    background: linear-gradient(135deg, hsl(var(--primary) / 0.1) 0%, hsl(270 60% 50% / 0.1) 100%);
+    border: 1px solid hsl(var(--primary) / 0.2);
+  }
+}
+
+@layer utilities {
+  /* Fade in animation */
+  .animate-fade-in {
+    animation: fadeIn 0.5s ease-out forwards;
+  }
+
+  .animate-fade-in-up {
+    animation: fadeInUp 0.5s ease-out forwards;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
