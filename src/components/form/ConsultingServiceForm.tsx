@@ -678,15 +678,15 @@ const ConsultingServiceForm: React.FC<ConsultingServiceFormProps> = ({
                   <table className="w-full text-sm">
                     <thead>
                       <tr className="bg-muted/30">
-                        <th className="px-4 py-2.5 text-left font-medium text-foreground/80">指導形式</th>
+                        <th className="px-4 py-2.5 text-left font-medium text-foreground/80 whitespace-nowrap">指導形式</th>
                         <th className="px-4 py-2.5 text-left font-medium text-foreground/80">說明</th>
-                        <th className="px-4 py-2.5 text-right font-medium text-foreground/80">基礎費用</th>
-                        <th className="px-4 py-2.5 text-right font-medium text-foreground/80">指定講師</th>
+                        <th className="px-4 py-2.5 text-right font-medium text-foreground/80 whitespace-nowrap">基礎費用</th>
+                        <th className="px-4 py-2.5 text-right font-medium text-foreground/80 whitespace-nowrap">指定講師</th>
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-border/20">
                       <tr className="hover:bg-muted/20 transition-colors">
-                        <td className="px-4 py-2.5 font-medium text-foreground">一對一指導</td>
+                        <td className="px-4 py-2.5 font-medium text-foreground whitespace-nowrap">一對一指導</td>
                         <td className="px-4 py-2.5 text-xs text-muted-foreground">
                           教練手把手指導<br/>
                           <span className="text-foreground/60">適用於想短期學習技巧或專案開發範本指導或輔導取得認證</span>
@@ -695,7 +695,7 @@ const ConsultingServiceForm: React.FC<ConsultingServiceFormProps> = ({
                         <td className="px-4 py-2.5 text-right text-muted-foreground">NT$ 5,000/時</td>
                       </tr>
                       <tr className="hover:bg-muted/20 transition-colors">
-                        <td className="px-4 py-2.5 font-medium text-foreground">一對多指導</td>
+                        <td className="px-4 py-2.5 font-medium text-foreground whitespace-nowrap">一對多指導</td>
                         <td className="px-4 py-2.5 text-xs text-muted-foreground">
                           開發團隊帶領<br/>
                           <span className="text-foreground/60">適用於帶領團隊專案開發設計、範本指導或團隊學習或輔導取得認證</span>
