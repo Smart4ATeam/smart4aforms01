@@ -1,18 +1,130 @@
 
+# 報價單產生表單搬遷計畫
 
-## Plan: Increase Form Width
+## 表單概述
 
-The boss feels the current form width (`max-w-3xl` = 768px) is too narrow and text feels cramped.
+根據分析 `https://smart4a-quotation-form.lovable.app` 的內容，這是一份**內部報價單產生表單 (Quotation Form)**，用於開立服務報價單給客戶。
 
-### Change
+### 表單結構（四大區段）
+1. **報價人員資訊**：開立人員（選單）、聯絡 Email、報價日期、詢價單號
+2. **客戶資料**：公司名稱、聯絡窗口、發票抬頭、統編、Email、電話、地址
+3. **方案選擇**：
+   - 陪跑與轉型方案（基礎陪跑 36萬、完整轉型 48萬、企業客製）
+   - 顧問服務月費（輕量/中量/重量型）
+   - 技術指導 & 教育訓練
+4. **費用總計**：原價小計、特別折扣、最終報價總額
 
-Update the default `maxWidth` in `FormPageTemplate.tsx` from `max-w-3xl` to `max-w-4xl` (896px).
+---
 
-This is a single-line change on line 78 of `src/components/form/FormPageTemplate.tsx`:
+## 搬遷方式建議
 
+### 選項一：直接在此專案重新建立（推薦）
+
+由於無法直接存取另一個 Lovable 專案的原始碼，建議在此專案**根據現有表單模式重新建立**。好處是：
+- 與現有元件風格一致（GlassInput、GlassSelect 等）
+- 整合到統一的表單管理系統
+- 資料可存入 Supabase 備份
+- 統一的 Webhook 提交流程
+
+### 選項二：手動複製程式碼
+
+如果你有另一個專案的 GitHub 存取權：
+1. 從原專案匯出表單元件程式碼
+2. 手動貼上到此專案並調整 import 路徑
+3. 在 `forms.ts` 新增配置
+
+---
+
+## 實作計畫（選項一）
+
+### 步驟 1：建立表單元件
+建立 `src/components/form/QuotationForm.tsx`
+
+**表單欄位設計**：
+| 區段 | 欄位 | 類型 | 必填 |
+|------|------|------|------|
+| 報價人員 | 開立人員 | 下拉選單 | ✓ |
+| 報價人員 | 聯絡 Email | Email | ✓ |
+| 報價人員 | 報價日期 | 日期 | ✓ |
+| 報價人員 | 詢價單號 | 文字 | |
+| 客戶資料 | 公司名稱 | 文字 | ✓ |
+| 客戶資料 | 聯絡窗口 | 文字 | ✓ |
+| 客戶資料 | 發票抬頭 | 文字 | |
+| 客戶資料 | 統編 | 文字 | |
+| 客戶資料 | Email | Email | ✓ |
+| 客戶資料 | 電話 | 電話 | |
+| 客戶資料 | 地址 | 文字 | |
+| 方案選擇 | 陪跑/轉型方案 | 多選 Checkbox | |
+| 方案選擇 | 顧問服務月費 | 下拉選單 | |
+| 方案選擇 | 顧問月數 | 數字 | |
+| 方案選擇 | 技術指導/教育訓練 | 多選 Checkbox | |
+| 費用計算 | 特別折扣 | 數字 | |
+| 費用計算 | 折扣說明 | 文字 | |
+
+**費率設定**：
+```text
+陪跑轉型方案：
+├─ 基礎陪跑：NT$ 360,000
+├─ 完整轉型：NT$ 480,000
+└─ 企業客製：另議
+
+顧問服務月費：
+├─ 輕量型：NT$ 30,000/月
+├─ 中量型：NT$ 50,000/月
+└─ 重量型：NT$ 80,000/月
+
+技術指導 & 教育訓練：
+├─ 專案技術指導 (Level 5)：NT$ 6,000/hr × 2hr = NT$ 12,000/次
+├─ 企業教育訓練 (Level 3+)：NT$ 8,000/hr × 3hr = NT$ 24,000/單元
+└─ 教練指導 (Level 4+)：NT$ 5,000/hr × 2hr = NT$ 10,000/次
 ```
-maxWidth = 'max-w-3xl'  →  maxWidth = 'max-w-4xl'
+
+### 步驟 2：在 forms.ts 新增配置
+```text
+位置：src/data/forms.ts
+路徑：/form/quotation
+分類：內部管理
 ```
 
-This will apply globally to all form pages since none override the default. If `max-w-4xl` still feels narrow, we can go to `max-w-5xl` (1024px) instead.
+### 步驟 3：在 FormPage.tsx 註冊
+- 匯入 QuotationForm 元件
+- 新增路由判斷
+- 設定成功頁面配置
 
+### 步驟 4：建立資料庫表格（選填）
+如需備份提交資料到 Supabase：
+- 建立 `quotation_submissions` 表格
+- 新增對應的資料庫寫入邏輯
+
+### 步驟 5：設定 Webhook
+需要你提供：
+- Make 情境的 Webhook URL
+- 情境名稱與連結
+
+---
+
+## 技術細節
+
+### 參考現有元件
+此表單與 `ConsultingServiceForm.tsx` 功能相似，可參考其：
+- 多步驟表單結構
+- 動態費用計算邏輯
+- 發票相關欄位處理
+
+### 匯出格式
+報價單可能需要額外功能：
+- 產生 PDF 報價單
+- 發送報價單 Email 給客戶
+- 這些可透過 Make 情境處理
+
+---
+
+## 下一步
+
+請確認：
+1. 是否採用選項一（重新建立）？
+2. 提供 Make Webhook URL
+3. 是否需要資料庫備份功能？
+4. 報價人員選單的選項（目前看到：丁禹勝、黃竹瑄、李姿瑩）
+
+確認後即可開始實作！

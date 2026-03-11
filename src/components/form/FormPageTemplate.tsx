@@ -75,7 +75,7 @@ const FormPageTemplate: React.FC<FormPageTemplateProps> = ({
   children,
   successConfig = {},
   notFoundConfig = {},
-  maxWidth = 'max-w-3xl',
+  maxWidth = 'max-w-4xl',
   showCard = true,
 }) => {
   const bgClass = background === 'custom' && customBackground 
