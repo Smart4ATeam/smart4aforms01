@@ -901,7 +901,7 @@ const ConsultingServiceForm: React.FC<ConsultingServiceFormProps> = ({
                       </tr>
                       {/* 中量型 */}
                       <tr className="hover:bg-muted/20 transition-colors">
-                        <td className="px-3 py-3 font-medium text-foreground align-top">
+                        <td className="px-3 py-3 font-medium text-foreground align-top whitespace-nowrap">
                           <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-purple-500/10 text-purple-600 dark:text-purple-400 text-xs font-medium">
                             中量型
                           </span>
