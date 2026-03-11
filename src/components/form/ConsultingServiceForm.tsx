@@ -884,7 +884,7 @@ const ConsultingServiceForm: React.FC<ConsultingServiceFormProps> = ({
                     <tbody className="divide-y divide-border/20">
                       {/* 輕量型 */}
                       <tr className="hover:bg-muted/20 transition-colors">
-                        <td className="px-3 py-3 font-medium text-foreground align-top">
+                        <td className="px-3 py-3 font-medium text-foreground align-top whitespace-nowrap">
                           <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-blue-500/10 text-blue-600 dark:text-blue-400 text-xs font-medium">
                             輕量型
                           </span>
