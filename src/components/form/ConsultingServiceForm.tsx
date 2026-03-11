@@ -695,7 +695,7 @@ const ConsultingServiceForm: React.FC<ConsultingServiceFormProps> = ({
                         <td className="px-4 py-2.5 text-right text-muted-foreground">NT$ 5,000/時</td>
                       </tr>
                       <tr className="hover:bg-muted/20 transition-colors">
-                        <td className="px-4 py-2.5 font-medium text-foreground">一對多指導</td>
+                        <td className="px-4 py-2.5 font-medium text-foreground whitespace-nowrap">一對多指導</td>
                         <td className="px-4 py-2.5 text-xs text-muted-foreground">
                           開發團隊帶領<br/>
                           <span className="text-foreground/60">適用於帶領團隊專案開發設計、範本指導或團隊學習或輔導取得認證</span>
