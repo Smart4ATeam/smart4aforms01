@@ -919,7 +919,7 @@ const ConsultingServiceForm: React.FC<ConsultingServiceFormProps> = ({
                       </tr>
                       {/* 重量型 */}
                       <tr className="hover:bg-muted/20 transition-colors bg-primary/5">
-                        <td className="px-3 py-3 font-medium text-foreground align-top">
+                        <td className="px-3 py-3 font-medium text-foreground align-top whitespace-nowrap">
                           <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-primary/20 text-primary text-xs font-medium">
                             重量型
                           </span>
