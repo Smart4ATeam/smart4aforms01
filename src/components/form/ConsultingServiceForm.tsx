@@ -795,7 +795,7 @@ const ConsultingServiceForm: React.FC<ConsultingServiceFormProps> = ({
                     </thead>
                     <tbody className="divide-y divide-border/20">
                       <tr className="hover:bg-muted/20 transition-colors">
-                        <td className="px-4 py-2.5 font-medium text-foreground">專案技術指導</td>
+                        <td className="px-4 py-2.5 font-medium text-foreground whitespace-nowrap">專案技術指導</td>
                         <td className="px-4 py-2.5 text-xs text-muted-foreground">
                           專案開發進行中，遇到關鍵問題或流程設計問題<br/>
                           <span className="text-foreground/60">適用於專案或產品開發過程中，遇到流程開發或設計的問題</span>
